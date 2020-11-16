@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exeample React</title>
+    <!-- react cdn load -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+	<!-- babel cdn load -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        class TestButton extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {
+                    like: false,
+                }
+            }
+
+            render(){
+                return <button type="button" onClick= {()=> { this.setState({like: true}) }}> {this.state.like ? 'clicked' : 'click'} </button>
+            }
+        }
+
+        ReactDOM.render(<TestButton />, document.getElementById('app'))
+    </script>
+</body>
+</html>

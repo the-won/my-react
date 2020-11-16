@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Step 1</title>
+    <!-- react cdn load -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+	<!-- babel cdn load -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+    <!-- react push -->
+    <div id="root"></div>
+	<div id="root2"></div>
+	<!-- 1st 방법 -->
+    <script>
+        const e = React.createElement;
+		
+		class LikeButton extends React.Component {
+			constructor(props){
+				super(props);
+				this.state = {
+					liked: false,
+				}
+			}
+
+			render() {
+				return e(
+					'button', {onClick: ()=> { this.setState({liked: true}) }, 
+					type: 'button'},
+					this.state.liked === true ? 'Liked' : 'Like'); // <button>Like</button>
+			}
+		}
+	</script>
+	
+	<script>
+		ReactDOM.render(e(LikeButton), document.getElementById('root'))
+	</script>
+
+	<!-- 2nd번째 방법 -->
+	<script type="text/babel">
+       
+		class LikeButton2 extends React.Component {
+			constructor(props){
+				super(props);
+				this.state = {
+					liked: false,
+				}
+			}
+
+			render() {
+				return <button type="button" onClick= {()=> { this.setState({liked: true}) }}> {this.state.liked === true ? 'Liked' : 'Like'} </button>; // JSX (JS + XML)
+			}
+		}
+	</script>
+	
+	<script type="text/babel">
+		ReactDOM.render(<LikeButton2 />, document.getElementById('root2'))
+	</script>
+</body>
+</html>
